@@ -1,5 +1,14 @@
 import { Primate, Dog } from './animals.example.mjs'
 
+// class = prototype: Oriental
+// super = prototype: Dog
+// supers = prototype: [Dog, Cat, Monkey]
+// protobase = prototype: [Dog, Cat, Primate, Monkey]
+// protochain = prototype: [Object, Animal, Predator, Dog, Cat, Primate, Monkey, ?Oriental]
+
+// parents = [Dog, Cat, Monkey] <= supers.constructor
+// base = [Dog, Cat, Primate, Monkey] <= protobase.constructor
+// chain = [Object, Animal, Predator, Dog, Cat, Primate, Monkey, ?Oriental]
 const OrientalCat = Object.class('Oriental', [Dog, Primate], {
   statics: {
     origin: {

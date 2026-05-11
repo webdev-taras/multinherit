@@ -1,4 +1,4 @@
-function protochainof (master, exclude = []) {
+export function protochainof (master, exclude = []) {
   const protochain = []
   let proto = master
   while (proto) {
@@ -18,18 +18,17 @@ function protobaseof (supers) {
     protobase.push(...chain)
     fullchain.push(...chain)
   }
-  // console.log('fullchain = ', fullchain)
+  console.log('fullchain = ', protolistof(fullchain))
   return protobase
 }
 
-// export
-function protonamesof (protochain) {
-  
+export function protolistof (protochain) {
+  const chain = protochain.map(proto => proto.constructor ?? Object)
+  return chain.map(ctor => ctor.name || '')
 }
 
 // ctor(name, proto(supers(from), methods), init)
 
-// export
 export function inherit (name, from = [], stamp = {}) {
   const { statics = {}, ...methods } = stamp
   const parents = (typeof(from) === 'function')
