@@ -1,0 +1,40 @@
+{
+  "name": "multinherit",
+  "version": "0.0.1",
+  "description": "multiple and multi-level prototype inheritance",
+  "keywords": [
+    "inherit",
+    "inheritance",
+    "multiple",
+    "hierarchy",
+    "multi-level",
+    "prototype",
+    "constructor",
+    "mixin",
+    "class",
+    "extends",
+    "diamond"
+  ],
+  "homepage": "https://github.com/webdev-taras/multinherit#readme",
+  "bugs": {
+    "url": "https://github.com/webdev-taras/multinherit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdev-taras/multinherit.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Taras Panasiuk",
+    "email": "webdev.taras@gmail.com"
+  },
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node examples/index.mjs",
+    "test": "node --test tests/**/*.test.js",
+    "test:file": "node --test --watch tests/multinherit.test.js",
+    "test:only": "node --test --test-only",
+    "test:cover": "node --test --experimental-test-coverage",
+    "test:watch": "node --test --watch"
+  }}
