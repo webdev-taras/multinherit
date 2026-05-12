@@ -19,7 +19,6 @@ function protobaseof (supers) {
     protobase.push(...chain)
     fullchain.push(...chain)
   }
-  // console.log('fullchain = ', protolistof(fullchain))
   return protobase
 }
 
@@ -37,13 +36,12 @@ export function fullchainof (master) {
   return fullchain
 }
 
-export function protolistof (protochain) {
+function protolistof (protochain) {
   const chain = protochain.map(proto => proto.constructor ?? Object)
-  return chain.map(ctor => ctor.name || '')
+  return chain.map(ctor => ctor.name ?? '')
 }
 
 // ctor(name, proto(supers(from), methods), init)
-
 export function inherit (name, from = [], stamp = {}) {
   const { statics = {}, ...methods } = stamp
   const parents = (typeof(from) === 'function')
@@ -91,10 +89,14 @@ export function isinstof (inst, ctor) {
   return chain.includes(ctor) || inst instanceof ctor
 }
 
-// remove later
-Object.class = inherit
-Object.prototype.instanceof = function (ctor) {
-  return isinstof(this, ctor)
+export function extendObjectType() {
+  Object.class = inherit
+  Object.prototype.instanceof = function (ctor) {
+    return isinstof(this, ctor)
+  }
+  Object.classchainof = function (ctor, full = true) {
+    const protochainfn = full ? fullchainof : protochainof
+    const protochain = protochainfn(ctor.prototype ?? Object.prototype)
+    return protochain.map(proto => proto.constructor ?? Object)
+  }
 }
-
-export default inherit

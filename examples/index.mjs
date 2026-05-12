@@ -1,6 +1,9 @@
-import { protochainof, fullchainof, protolistof } from '../index.mjs'
+import { extendObjectType } from '../index.mjs'
 import { Animal, Predator, Primate, Dog } from './animals.example.mjs'
 import { OrientalCat } from './oriental.example.mjs'
+
+export const toName = ctor => ctor.name ?? ''
+extendObjectType()
 
 const animal = new Animal('Ann')
 const predator = new Predator('Jackal')
@@ -31,49 +34,8 @@ const predators = [predator, dog, oriental]
 predators.forEach(pet => {
   console.log(`Predator "${pet.name}" is ${pet.hunt()}`)
 })
-console.log('---')
-// console.log('dog.name', dog.constructor)
-// console.log('cat.name', cat.constructor)
-
-// const primates = [oriental]
-// primates.forEach(pet => {
-//   console.log(`Primate "${pet.name}" is ${pet.take()}`)
-// })
-console.log('---')
-
-console.log('animal is Animal', animal.instanceof(Animal))
-console.log('predator is Animal', predator.instanceof(Animal))
-console.log('predator is Predator', predator.instanceof(Predator))
-
-
-
-console.log('--- OrientalCat')
-console.log('oriental is Animal', oriental.instanceof(Animal))
-console.log('oriental is Primate', oriental.instanceof(Primate))
-console.log('oriental is Predator', oriental.instanceof(Predator))
-console.log('oriental is Dog', oriental.instanceof(Dog))
-console.log('oriental is OrientalCat', oriental.instanceof(OrientalCat))
-
-console.log('---')
-console.log('oriental.prototype', Object.getPrototypeOf(oriental))
-// console.log('oriental.constructor', oriental.constructor)
-console.log('oriental.constructor', Object.getPrototypeOf(oriental).constructor)
-console.log('oriental.parent.constructor', Object.getPrototypeOf(Object.getPrototypeOf(oriental)).constructor)
-
-console.log('---')
-console.log('oriental.ancestors', oriental.supers.map(s => s.constructor))
-console.log('oriental.ancestors', Object.getPrototypeOf(oriental).supers.map(s => s.constructor))
-console.log('oriental.parent.ancestors', (Object.getPrototypeOf(Object.getPrototypeOf(oriental)).supers ?? []).map(s => s.constructor))
-
-console.log('---')
-console.log('Primate.prototype', Primate.prototype)
-console.log('---')
-console.log('OrientalCat.prototype', OrientalCat.prototype)
-console.log('oriental.parent.prototype', Object.getPrototypeOf(Object.getPrototypeOf(oriental)))
-console.log('oriental.parent.parent.prototype', Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(oriental))))
-console.log('oriental.parent.parent.parent.prototype', Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(oriental)))))
 
 console.log('---')
 // chain = [Object, Animal, Predator, Dog, Primate, ?Oriental]
-console.log('OrientalCat masterchain list: ', protolistof(protochainof(OrientalCat.prototype)))
-console.log('OrientalCat protochain list: ', protolistof(fullchainof(OrientalCat.prototype)))
+console.log('OrientalCat masterchain list: ', Object.classchainof(OrientalCat, false).map(toName))
+console.log('OrientalCat protochain list: ', Object.classchainof(OrientalCat).map(toName))
