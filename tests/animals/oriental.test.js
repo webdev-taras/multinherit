@@ -8,7 +8,7 @@ import {
   Dog,
 } from '../../examples/animals.example.mjs'
 import { OrientalCat } from '../../examples/oriental.example.mjs'
-import { isinstof } from '../../index.mjs'
+import { instanceOf } from '../../index.mjs'
 
 test('animal', t => {
   const animal = new OrientalCat('Dina')
@@ -23,7 +23,7 @@ test('animal', t => {
   
   t.test('is instanceof Primate', t => {
     ok(!(animal instanceof Primate)) // not direct inheritance
-    ok(isinstof(animal, Primate))
+    ok(instanceOf(animal, Primate))
   })
 
   t.test('is instanceof Dog', t => {

@@ -2,7 +2,6 @@ import { extendObjectType } from '../index.mjs'
 import { Animal, Predator, Primate, Dog } from './animals.example.mjs'
 import { OrientalCat } from './oriental.example.mjs'
 
-export const toName = ctor => ctor.name ?? ''
 extendObjectType()
 
 const animal = new Animal('Ann')
@@ -35,7 +34,9 @@ predators.forEach(pet => {
   console.log(`Predator "${pet.name}" is ${pet.hunt()}`)
 })
 
+const toName = ctor => ctor.name ?? ''
+
 console.log('---')
 // chain = [Object, Animal, Predator, Dog, Primate, ?Oriental]
-console.log('OrientalCat masterchain list: ', Object.classchainof(OrientalCat, false).map(toName))
-console.log('OrientalCat protochain list: ', Object.classchainof(OrientalCat).map(toName))
+console.log('OrientalCat masterchain list: ', Object.classChainOf(OrientalCat, false).map(toName))
+console.log('OrientalCat protochain list: ', Object.classChainOf(OrientalCat).map(toName))
