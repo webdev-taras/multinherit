@@ -40,3 +40,7 @@ console.log('---')
 // chain = [Object, Animal, Predator, Dog, Primate, ?Oriental]
 console.log('OrientalCat masterchain list: ', Object.classChainOf(OrientalCat, false).map(toName))
 console.log('OrientalCat protochain list: ', Object.classChainOf(OrientalCat).map(toName))
+
+console.log('===')
+console.log('OrientalCat', OrientalCat.prototype)
+console.log('===')

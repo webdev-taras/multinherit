@@ -10,7 +10,7 @@ import { inherit } from '../index.mjs'
 // parents = [Dog, Cat, Monkey] <= supers.constructor
 // base = [Dog, Cat, Primate, Monkey] <= protobase.constructor
 // chain = [Object, Animal, Predator, Dog, Cat, Primate, Monkey, ?Oriental]
-const OrientalCat = inherit('Oriental', [Dog, Primate], {
+const OrientalCat = inherit('OrientalCat', [Dog, Primate], {
   statics: {
     origin: {
       value: 'Thailand',
@@ -28,10 +28,6 @@ const OrientalCat = inherit('Oriental', [Dog, Primate], {
   // move() { return this.supers[1].move() },
   move(...args) { return this.super.move.apply(this, args) },
 })
-
-console.log('===')
-console.log('OrientalCat', OrientalCat)
-console.log('===')
 
 export {
   OrientalCat
