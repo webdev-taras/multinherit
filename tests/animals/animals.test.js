@@ -1,5 +1,5 @@
 import test from 'node:test'
-import { ok, equal, deepEqual, throws } from 'node:assert/strict'
+import { ok, equal, notEqual, deepEqual, throws } from "node:assert/strict";
 
 import {
   Animal,
@@ -7,7 +7,6 @@ import {
   Primate,
   Dog,
 } from '../../examples/animals.example.mjs'
-import { notEqual } from 'node:assert'
 
 test('animal', t => {
   const animal = new Animal('Ann')
