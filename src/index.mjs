@@ -1,3 +1,4 @@
+// masterchainof
 export function protochainof (master, exclude = []) {
   const protochain = []
   let proto = master
@@ -18,8 +19,22 @@ function protobaseof (supers) {
     protobase.push(...chain)
     fullchain.push(...chain)
   }
-  console.log('fullchain = ', protolistof(fullchain))
+  // console.log('fullchain = ', protolistof(fullchain))
   return protobase
+}
+
+export function fullchainof (master) {
+  const parents = [...(master.protobase ?? []), master]
+  console.log('parents = ', protolistof(parents))
+  const protobase = []
+  const fullchain = []
+  for (const parent of parents) {
+    const chain = protochainof(parent, fullchain)
+    protobase.push(...chain)
+    fullchain.push(...chain)
+  }
+  console.log('fullchain = ', protolistof(fullchain))
+  return fullchain
 }
 
 export function protolistof (protochain) {

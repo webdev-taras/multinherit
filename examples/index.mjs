@@ -1,4 +1,4 @@
-import { protochainof, protolistof } from '../index.mjs'
+import { protochainof, fullchainof, protolistof } from '../index.mjs'
 import { Animal, Predator, Primate, Dog } from './animals.example.mjs'
 import { OrientalCat } from './oriental.example.mjs'
 
@@ -75,4 +75,5 @@ console.log('oriental.parent.parent.parent.prototype', Object.getPrototypeOf(Obj
 
 console.log('---')
 // chain = [Object, Animal, Predator, Dog, Primate, ?Oriental]
-console.log('OrientalCat prototype list: ', protolistof(protochainof(OrientalCat.prototype)))
+console.log('OrientalCat masterchain list: ', protolistof(protochainof(OrientalCat.prototype)))
+console.log('OrientalCat protochain list: ', protolistof(fullchainof(OrientalCat.prototype)))

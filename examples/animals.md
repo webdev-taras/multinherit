@@ -6,11 +6,15 @@ Animal
     Cat
   Primate
     Monkey
+
 Wild
 Adopted
 
-OrientalCat <= [Dog, Cat, Monkey, Adopted]
+Jumpable
 
+AdoptedCat <= [Cat, Adopted]
+WildDog <= [Dog, Adopted]
+OrientalCat <= [AdoptedCat, Monkey, Dog]
 
 # methods
 
@@ -35,7 +39,8 @@ Animal.sound
   Primate.?
     Monkey.scream
 
-[Dog, Cat, Monkey].jump
-
 Wild.bite
 Adopted.hug
+
+Jumpable.jump
+  [Dog, Cat, Monkey].jump
