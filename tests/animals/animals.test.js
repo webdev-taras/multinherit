@@ -45,7 +45,7 @@ test('predator', t => {
   
   t.test('has Animal methods', t => {
     equal(animal.breathe(), 'breathing')
-    notEqual(animal.move(), 'moving') // overrided
+    notEqual(animal.move(), 'moving') // overwritten
     equal(animal.move(), 'sneaking')
     equal(animal.eat(), 'eating')
   })
@@ -74,7 +74,7 @@ test('primate', t => {
   
   t.test('has Animal methods', t => {
     equal(animal.breathe(), 'breathing')
-    notEqual(animal.move(), 'moving') // overrided
+    notEqual(animal.move(), 'moving') // overwritten
     equal(animal.move(), 'hiking')
     equal(animal.eat(), 'eating')
   })
@@ -107,7 +107,7 @@ test('dog', t => {
   
   t.test('has Animal methods', t => {
     equal(animal.breathe(), 'breathing')
-    notEqual(animal.move(), 'moving') // overrided
+    notEqual(animal.move(), 'moving') // overwritten
     equal(animal.move(), 'runing')
     equal(animal.eat(), 'eating')
   })

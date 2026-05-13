@@ -1,87 +1,37 @@
-function Animal (name) {
-  this.name = name
-}
-Animal.prototype = Object.create(Object.prototype)
-Animal.prototype.constructor = Animal
+import { inherit } from '../index.mjs'
 
-Animal.prototype.breathe = function() {
-	return 'breathing'
-}
+export const Animal = inherit('Animal', [], {
+	constructor(name) {
+		this.name = name
+	},
+	breathe() { return 'breathing' },
+	move() { return 'moving' },
+	eat() { return 'eating' },
+})
 
-Animal.prototype.move = function() {
-	return 'moving'
-}
+export const Predator = inherit('Predator', [Animal], {
+	hunt() { return 'hunting' },
+	sneak() { return 'sneaking' },
+	move() { return this.sneak() },
+})
 
-Animal.prototype.eat = function() {
-	return 'eating'
-}
+export const Dog = inherit('Dog', [Predator], {
+	run() { return 'runing' },
+	move() { return this.run() },
+})
 
+export const Cat = inherit('Cat', [Predator], {
+	walk() { return 'walking' },
+	move() { return this.walk() },
+})
 
-// Predator <= Animal
-function Predator (...args) {
-  Animal.apply(this, args)
-}
-Predator.prototype = Object.create(Animal.prototype)
-Predator.prototype.constructor = Predator
+export const Primate = inherit('Primate', [Animal], {
+	take() { return 'taking' },
+	hike() { return 'hiking' },
+	move() { return this.hike() },
+})
 
-Predator.prototype.hunt = function() {
-	return 'hunting'
-}
-
-Predator.prototype.sneak = function() {
-	return 'sneaking'
-}
-
-Predator.prototype.move = function() {
-	return this.sneak()
-}
-
-// Primate <= Animal
-function Primate (...args) {
-  Animal.apply(this, args)
-}
-Primate.prototype = Object.create(Animal.prototype)
-Primate.prototype.constructor = Primate
-
-Primate.prototype.take = function() {
-	return 'taking'
-}
-
-Primate.prototype.hike = function() {
-	return 'hiking'
-}
-
-Primate.prototype.move = function() {
-	return this.hike()
-}
-
-/*
-class Primate extends Animal {
-  take() {
-	  return 'taking'
-  }
-}
-*/
-
-
-// Dog <= Predator <= Animal
-function Dog (...args) {
-  Predator.apply(this, args)
-}
-Dog.prototype = Object.create(Predator.prototype)
-Dog.prototype.constructor = Dog
-
-Dog.prototype.run = function() {
-	return 'runing'
-}
-
-Dog.prototype.move = function() {
-	return this.run()
-}
-
-export {
-  Animal,
-  Predator,
-  Primate,
-  Dog,
-}
+export const Monkey = inherit('Monkey', [Primate], {
+	climb() { return 'climbing' },
+	move() { return this.climb() },
+})

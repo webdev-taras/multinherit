@@ -1,11 +1,13 @@
 import test from 'node:test'
-import { ok, equal, notEqual, deepEqual, throws } from "node:assert/strict";
+import { ok, equal, deepEqual } from "node:assert/strict";
 
 import {
   Animal,
   Predator,
-  Primate,
   Dog,
+  Cat,
+  Primate,
+  Monkey,
 } from '../../examples/animals.example.mjs'
 import { OrientalCat } from '../../examples/oriental.example.mjs'
 import { classChainOf } from '../../index.mjs'
@@ -19,7 +21,7 @@ test('classChainOf', t => {
       Object,
       Animal,
       Predator,
-      Dog,
+      Cat,
       OrientalCat
     ])
   })
@@ -30,8 +32,10 @@ test('classChainOf', t => {
       Object,
       Animal,
       Predator,
-      Dog,
+      Cat,
       Primate,
+      Monkey,
+      Dog,
       OrientalCat
     ])
   })

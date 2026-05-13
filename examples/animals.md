@@ -44,3 +44,5 @@ Adopted.hug
 
 Jumpable.jump
   [Dog, Cat, Monkey].jump
+
+OrientalCat.sniff

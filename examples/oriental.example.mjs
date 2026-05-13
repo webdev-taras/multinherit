@@ -1,16 +1,12 @@
-import { Primate, Dog } from './animals.example.mjs'
+import { Dog, Cat, Monkey } from './animals.example.mjs'
 import { inherit } from '../index.mjs'
 
-// class = prototype: Oriental
-// super = prototype: Dog
-// supers = prototype: [Dog, Cat, Monkey]
-// protobase = prototype: [Dog, Cat, Primate, Monkey]
-// protochain = prototype: [Object, Animal, Predator, Dog, Cat, Primate, Monkey, ?Oriental]
-
-// parents = [Dog, Cat, Monkey] <= supers.constructor
-// base = [Dog, Cat, Primate, Monkey] <= protobase.constructor
-// chain = [Object, Animal, Predator, Dog, Cat, Primate, Monkey, ?Oriental]
-const OrientalCat = inherit('OrientalCat', [Dog, Primate], {
+// class = prototype: OrientalCat
+// super = prototype: Cat
+// supers = prototype: [Cat, Monkey, Dog]
+// protobase = prototype: [Cat, Primate, Monkey, Dog]
+// protochain = prototype: [Object, Animal, Predator, Cat, Primate, Monkey, Dog, OrientalCat]
+const OrientalCat = inherit('OrientalCat', [Cat, Monkey, Dog], {
   statics: {
     origin: {
       value: 'Thailand',
@@ -22,11 +18,8 @@ const OrientalCat = inherit('OrientalCat', [Dog, Primate], {
     this.super.constructor.apply(this, args)
   },
   sniff() { return 'sniffing' },
-  // hike() { return 'hiking' },
-  // move() { return this.hike() },
   run() { return 'fast running' },
-  // move() { return this.supers[1].move() },
-  move(...args) { return this.super.move.apply(this, args) },
+  move(...args) { return this.supers[2].move.apply(this, args) },
 })
 
 export {
